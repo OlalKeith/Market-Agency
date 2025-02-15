@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import AboutSection  from "../components/AboutSection.tsx";
-import TeamSection  from "../components/TeamSection.tsx";
-import ContactSection  from "../components/ContactSection.tsx";
+import { motion } from "framer-motion";  // Import Framer Motion
+import AboutSection from "../components/AboutSection.tsx";
+import TeamSection from "../components/TeamSection.tsx";
+import ContactSection from "../components/ContactSection.tsx";
 
 const About = () => {
   const location = useLocation();
@@ -16,16 +17,22 @@ const About = () => {
   }, [location]);
 
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}  // Start position (invisible, slightly lower)
+      animate={{ opacity: 1, y: 0 }}   // End position (visible, at correct position)
+      exit={{ opacity: 0, y: -20 }}    // Exit animation (fade out)
+      transition={{ duration: 0.5 }}   // Smooth transition
+    >
       <AboutSection />
       <div className="mt-12">
         <TeamSection />
       </div>
       <ContactSection />
-    </div>
+    </motion.div>
   );
 };
 
 export default About;
+
 
 
