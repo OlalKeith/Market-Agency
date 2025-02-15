@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="container mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Trademark Section */}
         <div>
-          <h3 className="font-bold text-lg mb-4">TRADEMARK©</h3>
+          <h3 className="font-bold text-lg mb-4">ABOVE THE LINE MARKETING</h3>
         </div>
 
         {/* Menu Section */}
@@ -26,7 +26,7 @@ const Footer = () => {
           <ul className="space-y-2">
             <li>
               <a href="mailto:info@mysite.com" className="hover:underline">
-                sada@gmail.com
+                sadakahindi@gmail.com
               </a>
             </li>
             <li>+254-000-000</li>
@@ -58,7 +58,7 @@ const Footer = () => {
 
       {/* Copyright Section */}
       <div className="container mx-auto px-4 mt-8 pt-4 border-t border-green-500 text-center text-sm">
-        © 2025 by TRADEMARK. Powered and secured by Olal
+        © 2025 by ABOVE THE LINE MARKETING.
       </div>
     </footer>
   );

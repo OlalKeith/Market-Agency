@@ -1,15 +1,31 @@
-import React from 'react';
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import AboutSection  from "../components/AboutSection.tsx";
+import TeamSection  from "../components/TeamSection.tsx";
+import ContactSection  from "../components/ContactSection.tsx";
 
 const About = () => {
-    return (
-      <div className="max-w-4xl mx-auto text-center py-10">
-        <h1 className="text-4xl font-bold text-green-700">About Us</h1>
-        <p className="mt-4 text-gray-600">
-          We specialize in strategy, design, and marketing. Our goal is to help businesses grow by providing top-notch branding solutions.
-        </p>
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.scrollToContact) {
+      setTimeout(() => {
+        document.getElementById("contact-section")?.scrollIntoView({ behavior: "smooth" });
+      }, 100); // Delay to ensure the section is loaded
+    }
+  }, [location]);
+
+  return (
+    <div>
+      <AboutSection />
+      <div className="mt-12">
+        <TeamSection />
       </div>
-    );
-  };
-  
-  export default About;
-  
+      <ContactSection />
+    </div>
+  );
+};
+
+export default About;
+
+

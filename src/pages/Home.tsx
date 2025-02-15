@@ -8,7 +8,9 @@ const Home = () => {
   return (
     <div>
       <Hero />
-      <Promotional />
+      <div className="mt-12"> {/* Added spacing between Hero and Promotional */}
+        <Promotional />
+      </div>
       <Benefits />
     </div>
   );
