@@ -2,8 +2,8 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-green-700 text-white py-8">
-      <div className="container mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer className="bg-purple-600 text-white py-8">
+      <div className="container mx-auto px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center md:text-left">
         {/* Trademark Section */}
         <div>
           <h3 className="font-bold text-lg mb-4">ABOVE THE LINE MARKETING</h3>
@@ -25,7 +25,7 @@ const Footer = () => {
           <h3 className="font-bold text-lg mb-4">Contact</h3>
           <ul className="space-y-2">
             <li>
-              <a href="mailto:info@mysite.com" className="hover:underline">
+              <a href="mailto:sadakahindi@gmail.com" className="hover:underline">
                 sadakahindi@gmail.com
               </a>
             </li>
@@ -33,8 +33,8 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Address & Socials Section - Split into two columns */}
-        <div className="grid grid-cols-2 gap-8">
+        {/* Address & Socials Section - Stacking on mobile */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {/* Address */}
           <div>
             <h3 className="font-bold text-lg mb-4">Address</h3>
@@ -57,7 +57,7 @@ const Footer = () => {
       </div>
 
       {/* Copyright Section */}
-      <div className="container mx-auto px-4 mt-8 pt-4 border-t border-green-500 text-center text-sm">
+      <div className="container mx-auto px-4 mt-8 pt-4 border-t border-purple-400 text-center text-sm">
         © 2025 by ABOVE THE LINE MARKETING.
       </div>
     </footer>

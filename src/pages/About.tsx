@@ -18,6 +18,7 @@ const About = () => {
 
   return (
     <motion.div
+      className="bg-gray-50"
       initial={{ opacity: 0, y: 20 }}  // Start position (invisible, slightly lower)
       animate={{ opacity: 1, y: 0 }}   // End position (visible, at correct position)
       exit={{ opacity: 0, y: -20 }}    // Exit animation (fade out)
