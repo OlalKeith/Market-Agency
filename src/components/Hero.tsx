@@ -14,14 +14,14 @@ const Hero = () => {
 
       {/* Hero Content */}
       <div className="relative z-10 text-center p-8 max-w-screen-lg">
-        <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-          We Specialize in Strategy, <br /> Design & Marketing
+        <h1 className="text-4xl md:text-6xl font-bold leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+        Welcome to Above the Line Marketing, <br />  Where Digital Innovation Meets Seamless Execution
         </h1>
       </div>
 
       {/* Category Bar */}
       <div className="absolute transform -translate-x-1/2 left-1/2 mb-12 w-11/12 md:w-10/12 bg-purple-600 text-white p-2 md:p-4" style={{ bottom: '-4rem' }}>
-        <div className="flex flex-wrap md:flex-nowrap justify-around items-center gap-3 md:gap-4">
+        <div className="flex flex-wrap md:flex-nowrap justify-around items-center gap-3 md:gap-4" style={{ fontFamily: "'Playfair Display', serif" }}>
           <div className="flex items-center space-x-2 text-sm md:text-base whitespace-nowrap">
             <Megaphone className="w-4 h-4 md:w-5 md:h-5" />
             <span>Branding</span>

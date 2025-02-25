@@ -2,45 +2,42 @@ import React from "react";
 
 const Benefits = () => {
   return (
-    <section className="py-12 text-center max-w-screen-lg mx-auto">
+    <section className="py-12 text-center max-w-screen-lg mx-auto" style={{ fontFamily: "'Playfair Display', serif" }}>
       {/* Heading */}
-      <h2 className="text-4xl font-semibold text-purple-700">Work with Us</h2>
+      <h2 className="text-4xl font-semibold text-purple-700">Why Work with Us</h2>
       <p className="text-gray-700 mt-2">
-        I'm a title. Click here to add your own text and edit me.
+      Expert Professionals
       </p>
 
       {/* Benefits Section */}
       <div className="mt-8 flex flex-col md:flex-row items-center justify-center text-center">
-        {/* Data Driven */}
+        {/* Expert Professionals */}
         <div className="w-full md:w-1/3 p-6">
-          <h3 className="text-xl font-semibold">Data Driven</h3>
+          <h3 className="text-xl font-semibold">Expert Professionals</h3>
           <p className="text-gray-600 mt-2">
-            I'm a paragraph. Click here to add your own text and edit me. Let
-            your users get to know you.
+          At Above The Line Marketing, we bring together a team of experts to deliver exceptional results using advanced AI-driven solutions.
           </p>
         </div>
 
-        {/* Vertical Divider */}
+        {/* Innovative Approach */}
         <div className="hidden md:block h-24 border-l border-purple-500"></div>
 
         {/* Innovation */}
         <div className="w-full md:w-1/3 p-6">
-          <h3 className="text-xl font-semibold ">Innovation</h3>
+          <h3 className="text-xl font-semibold ">Innovative Approach</h3>
           <p className="text-gray-600 mt-2">
-            I'm a paragraph. Click here to add your own text and edit me. Let
-            your users get to know you.
+          Our innovative approach ensures that we stay ahead of the curve, offering you the latest solutions tailored to your specific needs.
           </p>
         </div>
 
         {/* Vertical Divider */}
         <div className="hidden md:block h-24 border-l border-purple-500"></div>
 
-        {/* Creativity */}
+        {/* Creative Solutions */}
         <div className="w-full md:w-1/3 p-6">
-          <h3 className="text-xl font-semibold">Creativity</h3>
+          <h3 className="text-xl font-semibold">Creative Solutions</h3>
           <p className="text-gray-600 mt-2">
-            I'm a paragraph. Click here to add your own text and edit me. Let
-            your users get to know you.
+          Creativity is at the heart of everything we do. Our team is dedicated to providing creative solutions that resonate with your audience and drive real impact.
           </p>
         </div>
       </div>

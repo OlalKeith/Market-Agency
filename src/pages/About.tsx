@@ -4,6 +4,7 @@ import { motion } from "framer-motion";  // Import Framer Motion
 import AboutSection from "../components/AboutSection.tsx";
 import TeamSection from "../components/TeamSection.tsx";
 import ContactSection from "../components/ContactSection.tsx";
+import ServicesSection from "../components/ServicesSection.tsx";
 
 const About = () => {
   const location = useLocation();
@@ -26,7 +27,8 @@ const About = () => {
     >
       <AboutSection />
       <div className="mt-12">
-        <TeamSection />
+        {/* <TeamSection /> */}
+        <ServicesSection/>
       </div>
       <ContactSection />
     </motion.div>

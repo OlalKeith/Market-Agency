@@ -2,10 +2,10 @@ import React from 'react';
 
 const ContactSection = () => {
   return (
-    <div id="contact-section" className="flex flex-col md:flex-row items-center justify-center max-w-6xl mx-auto my-10 p-5 border border-purple-500">
+    <div id="contact-section" className="flex flex-col md:flex-row items-center justify-center max-w-6xl mx-auto my-10 p-5 border border-purple-500" style={{ fontFamily: "'Playfair Display', serif" }}>
       <div className="w-full md:w-1/2 p-5">
-        <h2 className="text-3xl font-semibold text-black mb-4">Ready to leave a mark?</h2>
-        <p className="text-gray-600">Contact us!</p>
+        <h2 className="text-3xl font-semibold text-black mb-4">Ready to Dive In?</h2>
+        <p className="text-gray-600">Reach Out!</p>
         <form className="mt-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <input type="text" placeholder="First name *" className="border p-2 rounded w-full" required />

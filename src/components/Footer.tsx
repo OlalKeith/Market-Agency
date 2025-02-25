@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-purple-600 text-white py-8">
+    <footer className="bg-purple-600 text-white py-8" style={{ fontFamily: "'Playfair Display', serif" }}>
       <div className="container mx-auto px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center md:text-left">
         {/* Trademark Section */}
         <div>
@@ -14,7 +14,6 @@ const Footer = () => {
           <h3 className="font-bold text-lg mb-4">Menu</h3>
           <ul className="space-y-2">
             <li><a href="/" className="hover:underline">Home</a></li>
-            <li><a href="/works" className="hover:underline">Works</a></li>
             <li><a href="/about" className="hover:underline">About</a></li>
             <li><a href="/contact" className="hover:underline">Contact</a></li>
           </ul>
@@ -26,10 +25,10 @@ const Footer = () => {
           <ul className="space-y-2">
             <li>
               <a href="mailto:sadakahindi@gmail.com" className="hover:underline">
-                sadakahindi@gmail.com
+              info@abovethelinemarketing.com
               </a>
             </li>
-            <li>+254-000-000</li>
+           
           </ul>
         </div>
 
@@ -58,7 +57,7 @@ const Footer = () => {
 
       {/* Copyright Section */}
       <div className="container mx-auto px-4 mt-8 pt-4 border-t border-purple-400 text-center text-sm">
-        © 2025 by ABOVE THE LINE MARKETING.
+        Copyright © 2025 Above The Line Marketing.
       </div>
     </footer>
   );

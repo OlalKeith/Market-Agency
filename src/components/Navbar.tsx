@@ -22,13 +22,13 @@ const Navbar = () => {
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo/Title - Responsive text size and padding */}
         <h1 className="text-lg sm:text-xl md:text-2xl font-bold inline-block border-b-4 border-purple-500 pb-1 leading-tight"
-            style={{ fontFamily: "'Courgette', cursive" }}>
+            style={{ fontFamily: "'Playfair Display', serif" }}>
           <span className="hidden md:inline">ABOVE THE LINE MARKETING</span>
           <span className="md:hidden">ATL MARKETING</span>
         </h1>
 
         {/* Desktop Navigation */}
-        <ul className="hidden md:flex space-x-6">
+        <ul className="hidden md:flex space-x-6" style={{ fontFamily: "'Playfair Display', serif" }}>
           <li>
             <Link to="/"
               className={`hover:text-purple-300 transition-colors duration-200 ${
@@ -65,7 +65,7 @@ const Navbar = () => {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="absolute top-full left-0 right-0 bg-white shadow-lg md:hidden z-50">
-            <ul className="flex flex-col py-2">
+            <ul className="flex flex-col py-2" style={{ fontFamily: "'Playfair Display', serif" }}>
               <li>
                 <Link to="/"
                   onClick={() => setIsMenuOpen(false)}
