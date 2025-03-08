@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react"; // Import icons for mobile menu
 
+
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -15,6 +16,16 @@ const Navbar = () => {
       navigate("/about", { state: { scrollToContact: true } });
     }
     setIsMenuOpen(false); // Close mobile menu after click
+  };
+
+  const handleServicesClick = (e) => {
+    e.preventDefault();
+    if (location.pathname === "/about") {
+      document.getElementById("services-section")?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate("/about", { state: { scrollToServices: true } });
+    }
+    setIsMenuOpen(false);
   };
 
   return (
@@ -51,6 +62,11 @@ const Navbar = () => {
               className="hover:text-purple-300 transition-colors duration-200">
               Contact
             </a>
+          </li>
+          <li>
+            <button onClick={handleServicesClick} className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600">
+              Book Consultation !
+            </button>
           </li>
         </ul>
 

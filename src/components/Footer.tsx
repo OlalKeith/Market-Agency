@@ -46,10 +46,8 @@ const Footer = () => {
           <div>
             <h3 className="font-bold text-lg mb-4">Socials</h3>
             <ul className="space-y-2">
-              <li><a href="https://linkedin.com" className="hover:underline">LinkedIn</a></li>
-              <li><a href="https://facebook.com" className="hover:underline">Facebook</a></li>
-              <li><a href="https://instagram.com" className="hover:underline">Instagram</a></li>
-              <li><a href="https://pinterest.com" className="hover:underline">Pinterest</a></li>
+              <li><a href="https://www.linkedin.com/company/above-the-line-marketing" className="hover:underline">LinkedIn</a></li>
+              <li><a href="https://www.instagram.com/atl.marketing.ke?igsh=MW9mM3pkOHZjOWRhNQ==" className="hover:underline">Instagram</a></li>
             </ul>
           </div>
         </div>

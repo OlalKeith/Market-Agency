@@ -125,7 +125,7 @@ const ServicesSection = () => {
     const [selectedService, setSelectedService] = useState<null | typeof services[number]>(null);
 
   return (
-    <div className="py-10 bg-gray-100" style={{ fontFamily: "'Playfair Display', serif" }}>
+    <div id="services-section" className= "py-10 bg-gray-100" style={{ fontFamily: "'Playfair Display', serif" }}>
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-3xl font-semibold mb-6">Our Services</h2>
         <div className="overflow-x-auto flex space-x-6 px-4 md:px-0 scrollbar-hide">
