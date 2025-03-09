@@ -20,7 +20,7 @@ const ContactSection = () => {
         </form>
       </div>
       <div className="w-full md:w-1/2 p-5">
-        <img src="/images/test.avif" alt="Team meeting" className="rounded-lg" />
+        <img src="/images/contactpic.jpg" alt="Team meeting" className="rounded-lg shadow-lg filter blur-sm grayscale" />
       </div>
     </div>
   );

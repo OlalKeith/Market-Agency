@@ -36,9 +36,9 @@ const Promotional = () => {
       {/* Right Image Section */}
       <div className="w-full md:w-1/2">
         <img 
-          src="/images/test.avif" 
+          src="/images/letstalk.jpg" 
           alt="Meeting" 
-          className="w-full h-auto border border-purple-500 shadow-lg"
+          className="w-full h-auto border border-purple-500 shadow-lg filter blur-sm grayscale"
         />
       </div>
     </section>

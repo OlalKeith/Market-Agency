@@ -8,7 +8,8 @@ const Hero = () => {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-black bg-opacity-50"
         style={{
-          backgroundImage: "url('/images/frontlogo.avif')",
+          backgroundImage: "url('/images/atlfrontlogo.jpg')",
+          filter: "blur(1px) grayscale(50%)", 
         }}
       ></div>
 
