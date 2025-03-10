@@ -6,7 +6,11 @@ const Footer = () => {
       <div className="container mx-auto px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center md:text-left">
         {/* Trademark Section */}
         <div>
-          <h3 className="font-bold text-lg mb-4">ABOVE THE LINE MARKETING</h3>
+          <img
+            src="/ATLM_LOGO_WHITE-02.jpg"
+            alt="ATL Marketing Logo"
+            className="h-auto w-4/5 max-w-[150px] md:max-w-[200px] lg:max-w-[240px]"
+          />
         </div>
 
         {/* Menu Section */}
@@ -38,10 +42,7 @@ const Footer = () => {
           <div>
             <h3 className="font-bold text-lg mb-4">Address</h3>
             <p>Nairobi, Kenya</p>
-            <p>Syokimau</p>
-            <p>0000</p>
           </div>
-
           {/* Socials */}
           <div>
             <h3 className="font-bold text-lg mb-4">Socials</h3>

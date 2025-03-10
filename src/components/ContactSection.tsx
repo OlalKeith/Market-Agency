@@ -55,7 +55,7 @@ const ContactSection = () => {
       </div>
       <div className="w-full md:w-1/2 p-5">
         <img
-          src="/images/contactpic.jpg"
+          src="/images/aboutlogo.jpg"
           alt="Team meeting"
           className="rounded-lg shadow-lg"
           loading="lazy"

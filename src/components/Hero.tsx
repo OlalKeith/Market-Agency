@@ -6,9 +6,9 @@ const Hero = () => {
     <section className="relative flex items-center justify-center h-screen text-white mx-auto container px-4">
       {/* Background Image */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat w-full h-auto transition-all duration-500"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat w-full h-auto transition-all duration-500 opacity-70"
         style={{
-          backgroundImage: "url('/images/atlfrontlogo.jpg')",
+          backgroundImage: "url('/images/frontlogo.jpg')",
         }}
       ></div>
 
@@ -18,8 +18,7 @@ const Hero = () => {
           className="text-4xl md:text-6xl font-bold leading-tight"
           style={{ fontFamily: "'Playfair Display', serif" }}
         >
-          Welcome to Above the Line Marketing, <br /> Where Digital Innovation
-          Meets Seamless Execution
+          Elevate Your Business, <br /> Unleash Your Brand's Potential
         </h1>
       </div>
 

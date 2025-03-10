@@ -46,7 +46,7 @@ const Promotional = () => {
       <div className="w-full md:w-1/2">
         <img
           className="w-full h-auto border border-purple-500 shadow-lg"
-          src="/images/letstalk.jpg"
+          src="/images/letstalklogo.jpg"
           alt="Meeting"
           loading="lazy"
         />

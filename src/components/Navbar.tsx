@@ -34,14 +34,21 @@ const Navbar = () => {
   return (
     <nav className="text-black p-4 relative">
       <div className="container mx-auto flex justify-between items-center">
-        {/* Logo/Title - Responsive text size and padding */}
-        <h1
-          className="text-lg sm:text-xl md:text-2xl font-bold inline-block border-b-4 border-purple-500 pb-1 leading-tight"
-          style={{ fontFamily: "'Playfair Display', serif" }}
-        >
-          <span className="hidden md:inline">ABOVE THE LINE MARKETING</span>
-          <span className="md:hidden">ATL MARKETING</span>
-        </h1>
+        {/* Logo Image - Replace text with image */}
+        {/* <Link to="/" className="inline-block border-b-4 border-purple-500 pb-0 align-middle">
+          <img
+            src="/atlm-logo.png"
+            alt="ATL Marketing Logo"
+            className="h-auto w-4/5 max-w-[150px] md:max-w-[180px] lg:max-w-[200px] -mb-1"
+          />
+        </Link> */}
+        <Link to="/">
+          <img
+            src="/atlm-logo.png"
+            alt="ATL Marketing Logo"
+            className="h-auto w-4/5 max-w-[150px] md:max-w-[200px] lg:max-w-[240px]"
+          />
+        </Link>
 
         {/* Desktop Navigation */}
         <ul
