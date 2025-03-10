@@ -942,6 +942,10 @@
     --tw-font-weight: var(--font-weight-bold);
     font-weight: var(--font-weight-bold);
   }
+  .font-normal {
+    --tw-font-weight: var(--font-weight-normal);
+    font-weight: var(--font-weight-normal);
+  }
   .font-semibold {
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
@@ -1188,6 +1192,21 @@
       grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
+}
+@font-face {
+  font-family: 'Causten';
+  src: url('/public/fonts/Causten-Regular.woff2') format('woff2'), url('/public/fonts/Causten-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Causten';
+  src: url('/public/fonts/Causten-Bold.woff2') format('woff2'), url('/public/fonts/Causten-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+body {
+  font-family: 'Causten', sans-serif;
 }
 @layer base {
   .tooltip-arrow,.tooltip-arrow:before {
