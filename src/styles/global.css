@@ -2,24 +2,74 @@
 @plugin "flowbite/plugin";
 @source "../node_modules/flowbite";
 
+/* Custom Font */
 @font-face {
-    font-family: 'Causten';
-    src: url('/public/fonts/Causten-Regular.woff2') format('woff2'),
-         url('/public/fonts/Causten-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
+  font-family: 'Causten';
+  src: url('/public/fonts/Causten-Regular.woff2') format('woff2'),
+       url('/public/fonts/Causten-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Causten';
+  src: url('/public/fonts/Causten-Bold.woff2') format('woff2'),
+       url('/public/fonts/Causten-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Apply Font Globally */
+body {
+  font-family: 'Causten', sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* Responsive Font Sizes */
+html {
+  font-size: 16px;
+}
+
+@media (max-width: 1024px) { /* Tablets */
+  html {
+    font-size: 15px;
   }
-  
-  @font-face {
-    font-family: 'Causten';
-    src: url('/public/fonts/Causten-Bold.woff2') format('woff2'),
-         url('/public/fonts/Causten-Bold.woff') format('woff');
-    font-weight: 700;
-    font-style: normal;
+}
+
+@media (max-width: 768px) { /* Smaller tablets & large phones */
+  html {
+    font-size: 14px;
   }
-  
-  /* Apply the font globally */
-  body {
-    font-family: 'Causten', sans-serif;
+}
+
+@media (max-width: 480px) { /* Mobile */
+  html {
+    font-size: 13px;
   }
-  
+}
+
+/* Heading Sizes */
+h1 {
+  font-size: 2.5rem; /* 40px */
+}
+
+h2 {
+  font-size: 2rem; /* 32px */
+}
+
+h3 {
+  font-size: 1.75rem; /* 28px */
+}
+
+@media (max-width: 768px) { 
+  h1 {
+    font-size: 2rem; /* 32px */
+  }
+  h2 {
+    font-size: 1.5rem; /* 24px */
+  }
+  h3 {
+    font-size: 1.25rem; /* 20px */
+  }
+}

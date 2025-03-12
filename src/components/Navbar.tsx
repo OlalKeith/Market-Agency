@@ -53,7 +53,7 @@ const Navbar = () => {
         {/* Desktop Navigation */}
         <ul
           className="hidden md:flex space-x-6 items-center"
-          style={{ fontFamily: "'Playfair Display', serif" }}
+          // style={{ fontFamily: "'Playfair Display', serif" }}
         >
           <li>
             <Link

@@ -5,7 +5,7 @@ const ContactSection = () => {
     <div
       id="contact-section"
       className="flex flex-col md:flex-row items-center justify-center max-w-6xl mx-auto my-10 p-5 border border-purple-500"
-      style={{ fontFamily: "'Playfair Display', serif" }}
+      // style={{ fontFamily: "'Playfair Display', serif" }}
     >
       <div className="w-full md:w-1/2 p-5">
         <h2 className="text-3xl font-semibold text-black mb-4">

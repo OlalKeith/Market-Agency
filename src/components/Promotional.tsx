@@ -23,7 +23,7 @@ const Promotional = () => {
       {/* Left Text Section */}
       <div
         className="w-full md:w-1/2 p-6"
-        style={{ fontFamily: "'Playfair Display', serif" }}
+        // style={{ fontFamily: "'Playfair Display', serif" }}
       >
         <h2 className="text-4xl font-semibold text-purple-700">Let’s Talk!</h2>
         <p className="text-gray-700 mt-4 leading-relaxed">

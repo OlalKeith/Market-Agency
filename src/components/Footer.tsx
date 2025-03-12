@@ -2,12 +2,12 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-purple-600 text-white py-8" style={{ fontFamily: "'Playfair Display', serif" }}>
+    <footer className="bg-purple-600 text-white py-8" >
       <div className="container mx-auto px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center md:text-left">
         {/* Trademark Section */}
         <div>
           <img
-            src="/ATLM_LOGO_WHITE-02.jpg"
+            src="/ATLM_ALL_LOGOS-07.svg"
             alt="ATL Marketing Logo"
             className="h-auto w-4/5 max-w-[150px] md:max-w-[200px] lg:max-w-[240px]"
           />
@@ -49,6 +49,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li><a href="https://www.linkedin.com/company/above-the-line-marketing" className="hover:underline">LinkedIn</a></li>
               <li><a href="https://www.instagram.com/atl.marketing.ke?igsh=MW9mM3pkOHZjOWRhNQ==" className="hover:underline">Instagram</a></li>
+              <li><a href="https://www.tiktok.com/@atl.marketing.ke?_t=ZM-8ucu0IpGYTv&_r=1" className="hover:underline">TikTok</a></li>
             </ul>
           </div>
         </div>

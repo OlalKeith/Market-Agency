@@ -2,7 +2,7 @@ import React from "react";
 
 const Benefits = () => {
   return (
-    <section className="py-12 text-center max-w-screen-lg mx-auto" style={{ fontFamily: "'Playfair Display', serif" }}>
+    <section className="py-12 text-center max-w-screen-lg mx-auto" >
       {/* Heading */}
       <h2 className="text-4xl font-semibold text-purple-700">Why Work with Us</h2>
       <p className="text-gray-700 mt-2">

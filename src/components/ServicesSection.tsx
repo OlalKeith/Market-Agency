@@ -139,7 +139,7 @@ const ServicesSection = () => {
     <div
       id="services-section"
       className="py-10 bg-gray-100"
-      style={{ fontFamily: "'Playfair Display', serif" }}
+      // style={{ fontFamily: "'Playfair Display', serif" }}
     >
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-3xl font-semibold mb-6">Our Services</h2>

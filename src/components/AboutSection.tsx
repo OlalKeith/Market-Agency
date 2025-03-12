@@ -5,9 +5,9 @@ const AboutSection = () => {
   return (
     <div
       className="max-w-4xl mx-auto text-center py-10"
-      style={{ fontFamily: "'Playfair Display', serif" }}
+      // style={{ fontFamily: "'Playfair Display', serif" }}
     >
-      <h1 className="text-4xl text-purple-700 font-semibold">About Us</h1>
+      <h1 className="text-4xl text-purple-700 font-bold">About Us</h1>
       <p className="mt-4 text-gray-600">
         Welcome to Above the Line Marketing, where digital innovation meets
         seamless execution! We don’t just offer digital services—we create
