@@ -653,6 +653,9 @@
   .h-full {
     height: 100%;
   }
+  .max-h-\[90vh\] {
+    max-height: 90vh;
+  }
   .min-h-screen {
     min-height: 100vh;
   }
@@ -674,9 +677,6 @@
   .w-72 {
     width: calc(var(--spacing) * 72);
   }
-  .w-96 {
-    width: calc(var(--spacing) * 96);
-  }
   .w-full {
     width: 100%;
   }
@@ -688,6 +688,9 @@
   }
   .max-w-\[150px\] {
     max-width: 150px;
+  }
+  .max-w-md {
+    max-width: var(--container-md);
   }
   .max-w-screen-lg {
     max-width: var(--breakpoint-lg);
@@ -732,11 +735,17 @@
   .items-center {
     align-items: center;
   }
+  .items-stretch {
+    align-items: stretch;
+  }
   .justify-between {
     justify-content: space-between;
   }
   .justify-center {
     justify-content: center;
+  }
+  .justify-end {
+    justify-content: flex-end;
   }
   .gap-4 {
     gap: calc(var(--spacing) * 4);
@@ -771,6 +780,9 @@
   .overflow-x-auto {
     overflow-x: auto;
   }
+  .overflow-y-auto {
+    overflow-y: auto;
+  }
   .rounded {
     border-radius: 0.25rem;
   }
@@ -795,6 +807,10 @@
     border-top-style: var(--tw-border-style);
     border-top-width: 1px;
   }
+  .border-b {
+    border-bottom-style: var(--tw-border-style);
+    border-bottom-width: 1px;
+  }
   .border-b-4 {
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 4px;
@@ -802,6 +818,9 @@
   .border-l {
     border-left-style: var(--tw-border-style);
     border-left-width: 1px;
+  }
+  .border-gray-200 {
+    border-color: var(--color-gray-200);
   }
   .border-gray-300 {
     border-color: var(--color-gray-300);
@@ -817,6 +836,9 @@
   }
   .border-t-purple-600 {
     border-top-color: var(--color-purple-600);
+  }
+  .bg-black {
+    background-color: var(--color-black);
   }
   .bg-gray-50 {
     background-color: var(--color-gray-50);
@@ -938,6 +960,10 @@
     --tw-leading: var(--leading-tight);
     line-height: var(--leading-tight);
   }
+  .font-black {
+    --tw-font-weight: var(--font-weight-black);
+    font-weight: var(--font-weight-black);
+  }
   .font-bold {
     --tw-font-weight: var(--font-weight-bold);
     font-weight: var(--font-weight-bold);
@@ -1053,6 +1079,23 @@
       }
     }
   }
+  .focus\:ring-2 {
+    &:focus {
+      --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentColor);
+      box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+    }
+  }
+  .focus\:ring-red-500 {
+    &:focus {
+      --tw-ring-color: var(--color-red-500);
+    }
+  }
+  .focus\:outline-none {
+    &:focus {
+      --tw-outline-style: none;
+      outline-style: none;
+    }
+  }
   .sm\:grid-cols-2 {
     @media (width >= 40rem) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1066,11 +1109,6 @@
   .sm\:bg-top {
     @media (width >= 40rem) {
       background-position: top;
-    }
-  }
-  .md\:block {
-    @media (width >= 48rem) {
-      display: block;
     }
   }
   .md\:flex {
@@ -1205,11 +1243,10 @@
 }
 body {
   font-family: 'Causten', sans-serif;
-  font-size: 18px;
   line-height: 1.6;
 }
 html {
-  font-size: 16px;
+  font-size: 18px;
 }
 @media (max-width: 1024px) {
   html {
@@ -1227,17 +1264,17 @@ html {
   }
 }
 h1 {
-  font-size: 2.5rem;
-}
-h2 {
   font-size: 2rem;
 }
+h2 {
+  font-size: 1.8rem;
+}
 h3 {
-  font-size: 1.75rem;
+  font-size: 1.2rem;
 }
 @media (max-width: 768px) {
   h1 {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
   h2 {
     font-size: 1.5rem;

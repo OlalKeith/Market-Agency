@@ -18,7 +18,7 @@ const Hero = () => {
       {/* Hero Content */}
       <div className="relative z-10 text-center p-8 max-w-screen-lg">
         <h1
-          className="text-4xl md:text-6xl font-bold leading-tight"
+          className="text-4xl md:text-6xl font-black leading-tight"
           // style={{ fontFamily: "'Playfair Display', serif" }}
         >
           Elevate Your Business, <br /> Unleash Your Brand's Potential
