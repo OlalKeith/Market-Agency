@@ -689,6 +689,9 @@
   .max-w-\[150px\] {
     max-width: 150px;
   }
+  .max-w-\[180px\] {
+    max-width: 180px;
+  }
   .max-w-md {
     max-width: var(--container-md);
   }
@@ -836,9 +839,6 @@
   }
   .border-t-purple-600 {
     border-top-color: var(--color-purple-600);
-  }
-  .bg-black {
-    background-color: var(--color-black);
   }
   .bg-gray-50 {
     background-color: var(--color-gray-50);
@@ -1166,6 +1166,11 @@
       max-width: 200px;
     }
   }
+  .md\:max-w-\[240px\] {
+    @media (width >= 48rem) {
+      max-width: 240px;
+    }
+  }
   .md\:grid-cols-2 {
     @media (width >= 48rem) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1221,6 +1226,11 @@
   .lg\:max-w-\[240px\] {
     @media (width >= 64rem) {
       max-width: 240px;
+    }
+  }
+  .lg\:max-w-\[280px\] {
+    @media (width >= 64rem) {
+      max-width: 280px;
     }
   }
   .lg\:grid-cols-4 {
