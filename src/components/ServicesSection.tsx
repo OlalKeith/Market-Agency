@@ -168,9 +168,145 @@ const services = [
 ];
 
 const ServicesSection = () => {
-  const [selectedService, setSelectedService] = useState<
-    null | (typeof services)[number]
-  >(null);
+  const [selectedService, setSelectedService] = useState<{
+    title: string;
+    icon: string;
+    description: string;
+    details: {
+      price: string;
+      solve: string;
+      includes: string[];
+      bestFor: string;
+    };
+  } | null>(null);
+    const [showBookingModal, setShowBookingModal] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectedTime, setSelectedTime] = useState<string | null>(null);
+  const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
+  const [showAllSessions, setShowAllSessions] = useState(false);
+  const [selectedTimezone, setSelectedTimezone] = useState("GMT+3");
+  const [showTimezoneDropdown, setShowTimezoneDropdown] = useState(false);
+  const timezones = [
+    "GMT+3",
+    "GMT+2",
+    "GMT+1",
+    "GMT+0",
+    "GMT-1",
+    "GMT-2",
+    "GMT-3",
+    "GMT-4",
+    "GMT-5",
+  ];
+
+  const getDaysInMonth = (year, month) => {
+    return new Date(year, month + 1, 0).getDate();
+  };
+
+  const getFirstDayOfMonth = (year, month) => {
+    return new Date(year, month, 1).getDay();
+  };
+
+  const generateCalendarData = () => {
+    const year = currentMonth.getFullYear();
+    const month = currentMonth.getMonth();
+
+    const daysInMonth = getDaysInMonth(year, month);
+    const firstDay = getFirstDayOfMonth(year, month);
+
+    const days: (number | null)[] = []; 
+    for (let i = 0; i < firstDay; i++) {
+      days.push(null);
+    }
+
+    for (let day = 1; day <= daysInMonth; day++) {
+      days.push(day);
+    }
+
+    return {
+      year,
+      month,
+      days,
+    };
+  };
+
+  const calendar = generateCalendarData();
+
+  const navigateMonth = (direction) => {
+    const newMonth = new Date(currentMonth);
+    newMonth.setMonth(newMonth.getMonth() + direction);
+    setCurrentMonth(newMonth);
+  };
+
+  // Time slots
+  const timeSlots = [
+    "10:00 am",
+    "10:30 am",
+    "11:00 am",
+    "11:30 am",
+    "12:00 pm",
+    "12:30 pm",
+    "1:00 pm",
+    "1:30 pm",
+    "2:00 pm",
+    "2:30 pm",
+    "3:00 pm",
+    "3:30 pm",
+    "4:00 pm",
+    "4:30 pm",
+    "5:00 pm",
+    
+  ];
+
+  // Function to handle booking
+  const handleBooking = (service) => {
+    setSelectedService(service);
+    setShowBookingModal(true);
+  };
+
+  // Get month name
+  const getMonthName = (date: Date | null) => {
+    return date ? date.toLocaleString("default", { month: "long" }) : "Uknown Month";
+  };
+
+  // Get day names for the header
+  const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  // Check if a day is today
+  const isToday = (day) => {
+    const today = new Date();
+    return (
+      day === today.getDate() &&
+      calendar.month === today.getMonth() &&
+      calendar.year === today.getFullYear()
+    );
+  };
+
+  // Check if a day is selected
+  const isSelectedDay = (day: number | null): boolean => {
+    return (
+      day !== null &&
+      selectedDate?.getDate() === day &&
+      selectedDate?.getMonth() === calendar.month &&
+      selectedDate?.getFullYear() === calendar.year
+    );
+  };
+
+  // Function to select next available date
+  const handleCheckNextAvailability = () => {
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    setSelectedDate(tomorrow);
+  };
+
+  // Check if selected date is weekend (Saturday = 6, Sunday = 0)
+  const isWeekend = (date: Date | null): boolean => {
+    if (!date) return false;
+    const day = date.getDay();
+    return day === 0 || day === 6; // Sunday = 0, Saturday = 6
+  };
+  
+  
 
   return (
     <div
@@ -195,7 +331,10 @@ const ServicesSection = () => {
               >
                 More
               </button>
-              <button className="bg-purple-500 text-white py-2 px-4 rounded hover:bg-purple-600 mt-auto">
+              <button
+                className="bg-purple-500 text-white py-2 px-4 rounded hover:bg-purple-600 mt-auto"
+                onClick={() => handleBooking(service)}
+              >
                 Book Consultation
               </button>
             </div>
@@ -217,10 +356,10 @@ const ServicesSection = () => {
           <div className="bg-white rounded-lg w-full max-w-md mx-auto flex flex-col max-h-[90vh]">
             {/* Modal header - fixed */}
             <div className="p-2 border-b border-gray-200">
-              <h3 className="text-2xl font-bold">{selectedService.title}</h3>
-              <p className="text-gray-700">{selectedService.details.price}</p>
+              <h3 className="text-2xl font-bold">{selectedService?.title}</h3>
+              <p className="text-gray-700">{selectedService?.details?.price}</p>
             </div>
-            
+
             {/* Modal content - scrollable */}
             <div className="overflow-y-auto p-4 flex-grow">
               <p className="text-gray-600 italic mb-2">
@@ -230,7 +369,9 @@ const ServicesSection = () => {
                 <strong>Includes:</strong>
                 <ul className="list-disc pl-5 text-left text-gray-700 mt-2">
                   {selectedService.details.includes.map((item, idx) => (
-                    <li key={idx} className="mb-2">{item}</li>
+                    <li key={idx} className="mb-2">
+                      {item}
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -238,7 +379,7 @@ const ServicesSection = () => {
                 <strong>Best for:</strong> {selectedService.details.bestFor}
               </p>
             </div>
-            
+
             {/* Modal footer - fixed at bottom */}
             <div className="p-4 border-t border-gray-200 flex justify-end">
               <button
@@ -251,6 +392,207 @@ const ServicesSection = () => {
           </div>
         </Dialog>
       )}
+
+{showBookingModal && (
+        <Dialog
+          open={true}
+          onClose={() => setShowBookingModal(false)}
+          className="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-opacity-30 p-4 z-50"
+        >
+     <div className="bg-white rounded-lg w-full max-w-6xl mx-auto flex flex-col max-h-[90vh]">
+            {/* Back button */}
+            <div className="p-4 border-b border-gray-200">
+              <button 
+                className="flex items-center text-gray-600 hover:text-gray-900"
+                onClick={() => setShowBookingModal(false)}
+              >
+                <span className="mr-2">←</span> Back
+              </button>
+            </div>
+            
+            {/* Booking header */}
+            <div className="p-4 border-b border-gray-200">
+              <h2 className="text-2xl font-bold">Schedule your service</h2>
+              <p className="text-gray-600">Check out our availability and book the date and time that works for you</p>
+            </div>
+            
+            {/* Booking content */}
+            <div className="flex flex-col md:flex-row flex-1">
+              {/* Calendar section */}
+              <div className="w-full md:w-1/2 p-4 border-r border-gray-200">
+                <div className="flex justify-between items-center mb-4">
+                  <h3 className="text-lg font-semibold">Select a Date and Time</h3>
+                  <div className="relative">
+                    <button
+                      className="flex items-center text-sm border border-gray-300 px-3 py-1 rounded hover:bg-gray-50"
+                      onClick={() => setShowTimezoneDropdown(!showTimezoneDropdown)}
+                    >
+                      <span>Timezone: {selectedTimezone}</span>
+                      <span className="ml-2">▼</span>
+                    </button>
+                    {showTimezoneDropdown && (
+                      <div className="absolute right-0 top-full mt-1 bg-white border border-gray-300 rounded shadow-lg z-10 min-w-[250px]">
+                        {timezones.map((timezone, i) => (
+                          <button
+                            key={i}
+                            className="block w-full text-left px-3 py-2 hover:bg-gray-100 text-sm"
+                            onClick={() => {
+                              setSelectedTimezone(timezone);
+                              setShowTimezoneDropdown(false);
+                            }}
+                          >
+                            {timezone}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+                
+                {/* Month navigation */}
+                <div className="flex justify-between items-center mb-4">
+                  <button onClick={() => navigateMonth(-1)} className="text-xl hover:text-purple-500">
+                    ←
+                  </button>
+                  <h4 className="text-lg font-medium">
+                    {getMonthName(currentMonth)} {calendar.year}
+                  </h4>
+                  <button onClick={() => navigateMonth(1)} className="text-xl hover:text-purple-500">
+                    →
+                  </button>
+                </div>
+                
+                {/* Calendar */}
+                <div className="mb-6">
+                  {/* Day header */}
+                  <div className="grid grid-cols-7 mb-2">
+                    {dayNames.map((day, i) => (
+                      <div key={i} className="text-center text-sm font-medium p-2">
+                        {day}
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {/* Calendar grid */}
+                  <div className="grid grid-cols-7 gap-1">
+                    {calendar.days.map((day, i) => (
+                      <div 
+                        key={i} 
+                        className={`
+                          h-10 text-center flex items-center justify-center text-sm
+                          ${!day ? "text-gray-300" : "cursor-pointer hover:bg-gray-100"}
+                          ${isToday(day) ? "text-purple-500 font-bold" : ""}
+                          ${!!isSelectedDay(day) ? "bg-purple-500 text-white rounded-full" : ""}
+                        `}
+                        onClick={() => {
+                          if (day) {
+                            setSelectedDate(new Date(calendar.year, calendar.month, day));
+                          }
+                        }}
+                      >
+                        {day}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                {/* Check Next Availability or Selected date display */}
+                {!selectedDate ? (
+                  <div className="mb-4">
+                    <button
+                      className="w-full py-3 bg-purple-600 text-white rounded font-medium hover:bg-purple-700"
+                      onClick={handleCheckNextAvailability}
+                    >
+                      Check Next Availability
+                    </button>
+                  </div>
+                ) : (
+                  <div className="mb-4">
+                    <h4 className="text-lg font-medium">
+                      Availability for&nbsp;
+                      {selectedDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
+                    </h4>
+                    {isWeekend(selectedDate) && (
+                      <p className="text-gray-600 mt-2">No availability</p>
+                    )}
+                  </div>
+                )}
+              </div>
+              
+              {/* Right side - Time slots */}
+              <div className="w-full md:w-1/2 p-4 flex flex-col">
+                {/* Time slots */}
+                {selectedDate && !isWeekend(selectedDate) && (
+                  <div className="mb-6">
+                    <div className="grid grid-cols-2 gap-2">
+                      {timeSlots.map((time, i) => (
+                        <button
+                          key={i}
+                          className={`
+                            border border-gray-300 p-2 text-center rounded text-sm
+                            ${selectedTime === time ? "bg-purple-500 text-white border-purple-500" : "hover:bg-gray-50"}
+                          `}
+                          onClick={() => setSelectedTime(time)}
+                        >
+                          {time}
+                        </button>
+                      ))}
+                    </div>
+                    {!showAllSessions && (
+                      <div className="text-center mt-4">
+                        <button
+                          className="text-purple-600 underline text-sm hover:text-green-700"
+                          onClick={() => setShowAllSessions(true)}
+                        >
+                          Show all sessions
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              <div className="w-full md:w-1/2 p-4 flex flex-col">
+                {/* Service details */}
+                <div className="bg-gray-50 p-4 rounded flex-1">
+                  <div className="flex justify-between items-center mb-4">
+                    <h3 className="text-lg font-semibold">Service Details</h3>
+                    <button className="text-lg">▲</button>
+                  </div>
+                  
+                  <div>
+                    <h4 className="text-base font-medium mb-2">
+                      {selectedService?.title}
+                    </h4>
+                    {selectedDate && selectedTime && (
+                      <p className="text-gray-700 text-sm mb-2">
+                        {selectedDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} at {selectedTime}
+                      </p>
+                    )}
+                    <p className="text-gray-700 text-sm">San Francisco</p>
+                    <p className="text-gray-700 text-sm">Staff Member #1</p>
+                    <p className="text-gray-700 text-sm">1 hr</p>
+                  </div>
+                  
+                  {/* Next button - disabled when no date/time selected or weekend */}
+                  <button 
+                    className={`w-full mt-6 py-3 rounded font-medium ${
+                      selectedDate && selectedTime && !isWeekend(selectedDate)
+                        ? "bg-purple-600 text-white hover:bg-purple-700" 
+                        : "bg-gray-400 text-white cursor-not-allowed"
+                    }`}
+                    disabled={!selectedDate || !selectedTime || isWeekend(selectedDate)}
+                  >
+                    Next
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Dialog>
+      )}
+
+      
     </div>
   );
 };
