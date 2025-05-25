@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-import { Dialog } from "@headlessui/react";
 
 const services = [
   {
@@ -179,13 +178,14 @@ const ServicesSection = () => {
       bestFor: string;
     };
   } | null>(null);
-    const [showBookingModal, setShowBookingModal] = useState(false);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [showBookingModal, setShowBookingModal] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
-  const [showAllSessions, setShowAllSessions] = useState(false);
   const [selectedTimezone, setSelectedTimezone] = useState("GMT+3");
   const [showTimezoneDropdown, setShowTimezoneDropdown] = useState(false);
+  
   const timezones = [
     "GMT+3",
     "GMT+2",
@@ -254,10 +254,15 @@ const ServicesSection = () => {
     "4:00 pm",
     "4:30 pm",
     "5:00 pm",
-    
   ];
 
-  // Function to handle booking
+  // Function to handle service details modal
+  const handleShowDetails = (service) => {
+    setSelectedService(service);
+    setShowDetailsModal(true);
+  };
+
+  // Function to handle booking modal
   const handleBooking = (service) => {
     setSelectedService(service);
     setShowBookingModal(true);
@@ -265,7 +270,7 @@ const ServicesSection = () => {
 
   // Get month name
   const getMonthName = (date: Date | null) => {
-    return date ? date.toLocaleString("default", { month: "long" }) : "Uknown Month";
+    return date ? date.toLocaleString("default", { month: "long" }) : "Unknown Month";
   };
 
   // Get day names for the header
@@ -279,6 +284,16 @@ const ServicesSection = () => {
       calendar.month === today.getMonth() &&
       calendar.year === today.getFullYear()
     );
+  };
+
+  // Check if a day is in the past
+  const isPastDate = (day) => {
+    if (!day) return false;
+    const today = new Date();
+    const currentDate = new Date(calendar.year, calendar.month, day);
+    today.setHours(0, 0, 0, 0);
+    currentDate.setHours(0, 0, 0, 0);
+    return currentDate < today;
   };
 
   // Check if a day is selected
@@ -305,14 +320,11 @@ const ServicesSection = () => {
     const day = date.getDay();
     return day === 0 || day === 6; // Sunday = 0, Saturday = 6
   };
-  
-  
 
   return (
     <div
       id="services-section"
       className="py-10 bg-gray-100"
-      // style={{ fontFamily: "'Playfair Display', serif" }}
     >
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-3xl font-bold mb-6">Our Services</h2>
@@ -327,7 +339,7 @@ const ServicesSection = () => {
               <p className="text-gray-600 flex-grow">{service.description}</p>
               <button
                 className="text-purple-500 underline my-2 mb-4"
-                onClick={() => setSelectedService(service)}
+                onClick={() => handleShowDetails(service)}
               >
                 More
               </button>
@@ -346,13 +358,9 @@ const ServicesSection = () => {
         </p>
       </div>
 
-      {/* Modal with fixed height and scrollable content */}
-      {selectedService && (
-        <Dialog
-          open={true}
-          onClose={() => setSelectedService(null)}
-          className="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-opacity-30 p-4 z-50"
-        >
+      {/* Service Details Modal */}
+      {showDetailsModal && selectedService && (
+        <div className="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-opacity-30 p-4 z-50">
           <div className="bg-white rounded-lg w-full max-w-md mx-auto flex flex-col max-h-[90vh]">
             {/* Modal header - fixed */}
             <div className="p-2 border-b border-gray-200">
@@ -384,22 +392,19 @@ const ServicesSection = () => {
             <div className="p-4 border-t border-gray-200 flex justify-end">
               <button
                 className="bg-red-500 text-white py-2 px-6 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
-                onClick={() => setSelectedService(null)}
+                onClick={() => setShowDetailsModal(false)}
               >
                 Close
               </button>
             </div>
           </div>
-        </Dialog>
+        </div>
       )}
 
-{showBookingModal && (
-        <Dialog
-          open={true}
-          onClose={() => setShowBookingModal(false)}
-          className="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-opacity-30 p-4 z-50"
-        >
-     <div className="bg-white rounded-lg w-full max-w-6xl mx-auto flex flex-col max-h-[90vh]">
+      {/* Booking Modal */}
+      {showBookingModal && selectedService && (
+        <div className="fixed inset-0 flex items-center justify-center backdrop-blur-sm  bg-opacity-30 p-4 z-50">
+          <div className="bg-white rounded-lg w-full max-w-6xl mx-auto flex flex-col max-h-[90vh]">
             {/* Back button */}
             <div className="p-4 border-b border-gray-200">
               <button 
@@ -412,30 +417,30 @@ const ServicesSection = () => {
             
             {/* Booking header */}
             <div className="p-4 border-b border-gray-200">
-              <h2 className="text-2xl font-bold">Schedule your service</h2>
-              <p className="text-gray-600">Check out our availability and book the date and time that works for you</p>
+              <h2 className="text-xl md:text-2xl font-bold">Schedule your service</h2>
+              <p className="text-sm md:text-base text-gray-600">Check out our availability and book the date and time that works for you</p>
             </div>
             
-            {/* Booking content */}
-            <div className="flex flex-col md:flex-row flex-1">
+            {/* Booking content - responsive layout */}
+            <div className="flex flex-col xl:flex-row flex-1 overflow-hidden">
               {/* Calendar section */}
-              <div className="w-full md:w-1/2 p-4 border-r border-gray-200">
-                <div className="flex justify-between items-center mb-4">
-                  <h3 className="text-lg font-semibold">Select a Date and Time</h3>
+              <div className="w-full xl:w-1/3 p-4 border-b xl:border-b-0 xl:border-r border-gray-200 overflow-y-auto">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
+                  <h3 className="text-base md:text-lg font-semibold">Select a Date and Time</h3>
                   <div className="relative">
                     <button
-                      className="flex items-center text-sm border border-gray-300 px-3 py-1 rounded hover:bg-gray-50"
+                      className="flex items-center text-xs md:text-sm border border-gray-300 px-2 md:px-3 py-1 rounded hover:bg-gray-50"
                       onClick={() => setShowTimezoneDropdown(!showTimezoneDropdown)}
                     >
                       <span>Timezone: {selectedTimezone}</span>
                       <span className="ml-2">▼</span>
                     </button>
                     {showTimezoneDropdown && (
-                      <div className="absolute right-0 top-full mt-1 bg-white border border-gray-300 rounded shadow-lg z-10 min-w-[250px]">
+                      <div className="absolute right-0 top-full mt-1 bg-white border border-gray-300 rounded shadow-lg z-10 min-w-[200px] md:min-w-[250px]">
                         {timezones.map((timezone, i) => (
                           <button
                             key={i}
-                            className="block w-full text-left px-3 py-2 hover:bg-gray-100 text-sm"
+                            className="block w-full text-left px-3 py-2 hover:bg-gray-100 text-xs md:text-sm"
                             onClick={() => {
                               setSelectedTimezone(timezone);
                               setShowTimezoneDropdown(false);
@@ -451,13 +456,13 @@ const ServicesSection = () => {
                 
                 {/* Month navigation */}
                 <div className="flex justify-between items-center mb-4">
-                  <button onClick={() => navigateMonth(-1)} className="text-xl hover:text-purple-500">
+                  <button onClick={() => navigateMonth(-1)} className="text-lg md:text-xl hover:text-purple-500">
                     ←
                   </button>
-                  <h4 className="text-lg font-medium">
+                  <h4 className="text-base md:text-lg font-medium">
                     {getMonthName(currentMonth)} {calendar.year}
                   </h4>
-                  <button onClick={() => navigateMonth(1)} className="text-xl hover:text-purple-500">
+                  <button onClick={() => navigateMonth(1)} className="text-lg md:text-xl hover:text-purple-500">
                     →
                   </button>
                 </div>
@@ -467,7 +472,7 @@ const ServicesSection = () => {
                   {/* Day header */}
                   <div className="grid grid-cols-7 mb-2">
                     {dayNames.map((day, i) => (
-                      <div key={i} className="text-center text-sm font-medium p-2">
+                      <div key={i} className="text-center text-xs md:text-sm font-medium p-1 md:p-2">
                         {day}
                       </div>
                     ))}
@@ -479,13 +484,13 @@ const ServicesSection = () => {
                       <div 
                         key={i} 
                         className={`
-                          h-10 text-center flex items-center justify-center text-sm
-                          ${!day ? "text-gray-300" : "cursor-pointer hover:bg-gray-100"}
+                          h-8 md:h-10 text-center flex items-center justify-center text-xs md:text-sm
+                          ${!day ? "text-gray-300" : isPastDate(day) ? "text-gray-400 cursor-not-allowed" : "cursor-pointer hover:bg-gray-100"}
                           ${isToday(day) ? "text-purple-500 font-bold" : ""}
                           ${!!isSelectedDay(day) ? "bg-purple-500 text-white rounded-full" : ""}
                         `}
                         onClick={() => {
-                          if (day) {
+                          if (day && !isPastDate(day)) {
                             setSelectedDate(new Date(calendar.year, calendar.month, day));
                           }
                         }}
@@ -500,7 +505,7 @@ const ServicesSection = () => {
                 {!selectedDate ? (
                   <div className="mb-4">
                     <button
-                      className="w-full py-3 bg-purple-600 text-white rounded font-medium hover:bg-purple-700"
+                      className="w-full py-2 md:py-3 bg-purple-600 text-white rounded font-medium hover:bg-purple-700 text-sm md:text-base"
                       onClick={handleCheckNextAvailability}
                     >
                       Check Next Availability
@@ -508,22 +513,41 @@ const ServicesSection = () => {
                   </div>
                 ) : (
                   <div className="mb-4">
-                    <h4 className="text-lg font-medium">
+                    <h4 className="text-base md:text-lg font-medium">
                       Availability for&nbsp;
                       {selectedDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
                     </h4>
                     {isWeekend(selectedDate) && (
-                      <p className="text-gray-600 mt-2">No availability</p>
+                      <p className="text-gray-600 mt-2 text-sm md:text-base">No availability</p>
                     )}
+                  </div>
+                )}
+                
+                {/* Time slots for mobile/tablet */}
+                {selectedDate && !isWeekend(selectedDate) && (
+                  <div className="mb-6 xl:hidden">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                      {timeSlots.map((time, i) => (
+                        <button
+                          key={i}
+                          className={`
+                            border border-gray-300 p-2 text-center rounded text-xs md:text-sm
+                            ${selectedTime === time ? "bg-purple-500 text-white border-purple-500" : "hover:bg-gray-50"}
+                          `}
+                          onClick={() => setSelectedTime(time)}
+                        >
+                          {time}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
               
-              {/* Right side - Time slots */}
-              <div className="w-full md:w-1/2 p-4 flex flex-col">
-                {/* Time slots */}
+              {/* Middle section - Time slots for desktop */}
+              <div className="w-full xl:w-1/3 p-4 border-b xl:border-b-0 xl:border-r border-gray-200 overflow-y-auto">
                 {selectedDate && !isWeekend(selectedDate) && (
-                  <div className="mb-6">
+                  <div className="hidden xl:block">
                     <div className="grid grid-cols-2 gap-2">
                       {timeSlots.map((time, i) => (
                         <button
@@ -538,45 +562,35 @@ const ServicesSection = () => {
                         </button>
                       ))}
                     </div>
-                    {!showAllSessions && (
-                      <div className="text-center mt-4">
-                        <button
-                          className="text-purple-600 underline text-sm hover:text-green-700"
-                          onClick={() => setShowAllSessions(true)}
-                        >
-                          Show all sessions
-                        </button>
-                      </div>
-                    )}
                   </div>
                 )}
               </div>
 
-              <div className="w-full md:w-1/2 p-4 flex flex-col">
-                {/* Service details */}
-                <div className="bg-gray-50 p-4 rounded flex-1">
+              {/* Right side - Service details */}
+              <div className="w-full xl:w-1/3 p-4 flex flex-col">
+                <div className="bg-gray-50 p-3 md:p-4 rounded flex-1 flex flex-col">
                   <div className="flex justify-between items-center mb-4">
-                    <h3 className="text-lg font-semibold">Service Details</h3>
+                    <h3 className="text-base md:text-lg font-semibold">Service Details</h3>
                     <button className="text-lg">▲</button>
                   </div>
                   
-                  <div>
-                    <h4 className="text-base font-medium mb-2">
+                  <div className="flex-1">
+                    <h4 className="text-sm md:text-base font-medium mb-2">
                       {selectedService?.title}
                     </h4>
                     {selectedDate && selectedTime && (
-                      <p className="text-gray-700 text-sm mb-2">
+                      <p className="text-gray-700 text-xs md:text-sm mb-2">
                         {selectedDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} at {selectedTime}
                       </p>
                     )}
-                    <p className="text-gray-700 text-sm">San Francisco</p>
-                    <p className="text-gray-700 text-sm">Staff Member #1</p>
-                    <p className="text-gray-700 text-sm">1 hr</p>
+                    <p className="text-gray-700 text-xs md:text-sm">San Francisco</p>
+                    <p className="text-gray-700 text-xs md:text-sm">Staff Member #1</p>
+                    <p className="text-gray-700 text-xs md:text-sm">1 hr</p>
                   </div>
                   
                   {/* Next button - disabled when no date/time selected or weekend */}
                   <button 
-                    className={`w-full mt-6 py-3 rounded font-medium ${
+                    className={`w-full mt-4 md:mt-6 py-2 md:py-3 rounded font-medium text-sm md:text-base ${
                       selectedDate && selectedTime && !isWeekend(selectedDate)
                         ? "bg-purple-600 text-white hover:bg-purple-700" 
                         : "bg-gray-400 text-white cursor-not-allowed"
@@ -589,10 +603,8 @@ const ServicesSection = () => {
               </div>
             </div>
           </div>
-        </Dialog>
+        </div>
       )}
-
-      
     </div>
   );
 };
