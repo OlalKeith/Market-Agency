@@ -34,16 +34,6 @@ const About = () => {
         <AboutSection />
       </motion.div>
 
-      {/* <motion.div
-        className="mt-12"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={fadeInUp}
-      >
-        <TeamSection />
-      </motion.div> */}
-
       {/* Services Section */}
       <motion.div
         initial="hidden"
