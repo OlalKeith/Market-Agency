@@ -19,7 +19,7 @@ const services: Service[] = [
     title: "Digital Marketing Mastery",
     icon: "📈",
     description: "Boost your brand with expert SEO, social media, and ad strategies.",
-    calendlyUrl: "https://calendly.com/olal-james/smart-tech-solutions",
+    calendlyUrl: "https://calendly.com/abovethelinemarketing-info/30min",
     details: {
       price: "From $300/month",
       solve: "SEO struggles, low social media engagement, ineffective ads, email marketing challenges, and lack of authentic brand content.",
@@ -38,7 +38,7 @@ const services: Service[] = [
     title: "Smart Tech Solutions",
     icon: "🤖",
     description: "Seamless tech solutions for website, automation, and AI integration.",
-    calendlyUrl: "https://calendly.com/olal-james/smart-tech-solutions",
+    calendlyUrl: "https://calendly.com/abovethelinemarketing-info/30min",
     details: {
       price: "From $500/project",
       solve: "Website issues, automation challenges, AI integration.",
@@ -55,7 +55,7 @@ const services: Service[] = [
     title: "E-Commerce Success Kit",
     icon: "🛒",
     description: "Optimize your online store for higher conversions and smoother logistics.",
-    calendlyUrl: "https://calendly.com/olal-james/smart-tech-solutions",
+    calendlyUrl: "https://calendly.com/abovethelinemarketing-info/30min",
     details: {
       price: "From $400/month",
       solve: "Online store setup, payment issues, logistics optimization.",
@@ -73,7 +73,7 @@ const services: Service[] = [
     title: "Virtual Assistance",
     icon: "🖥️",
     description: "Delegate tasks and focus on what matters most.",
-    calendlyUrl: "https://calendly.com/olal-james/smart-tech-solutions",
+    calendlyUrl: "https://calendly.com/abovethelinemarketing-info/30min",
     details: {
       price: "From $250/month",
       solve: "Time-consuming admin tasks, scheduling headaches, business process inefficiencies.",
