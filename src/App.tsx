@@ -8,6 +8,8 @@ import Home from "./pages/Home.tsx";
 import Works from "./pages/Works.tsx";
 import About from "./pages/About.tsx";
 import Contact from "./pages/Contact.tsx";
+import TermsOfService from "./pages/TermsOfService.tsx";
+import PrivacyPolicy from "./pages/PrivacyPolicy.tsx";
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -43,6 +45,8 @@ const AnimatedRoutes = () => {
             <Route path="/works" element={<Works />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           </Routes>
         </motion.div>
       )}
