@@ -23,6 +23,7 @@ const WhatsAppSupportWidget: React.FC<WhatsAppSupportProps> = ({
     "I need help with Smart Tech Solutions",
     "I want to discuss E-Commerce Success Kit",
     "I need creative design services",
+    "and more...",
   ];
 
   const handleWhatsAppRedirect = (message: string) => {

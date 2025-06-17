@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { HelmetProvider } from 'react-helmet-async';
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
@@ -10,7 +11,12 @@ import About from "./pages/About.tsx";
 import Contact from "./pages/Contact.tsx";
 import TermsOfService from "./pages/TermsOfService.tsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.tsx";
-import WhatsAppSupportWidget from "./components/WhatsAppSupportWidget.tsx"; // Add this import
+import WhatsAppSupportWidget from "./components/WhatsAppSupportWidget.tsx"; 
+declare var process: {
+  env: {
+    [key: string]: string | undefined;
+  };
+};
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -63,6 +69,7 @@ function App() {
   }, []);
 
   return (
+     <HelmetProvider>
     <Router>
       <AnimatePresence mode="wait">
         {initialLoading ? (
@@ -85,7 +92,7 @@ function App() {
             
            {/* WhatsApp Support Widget - Add this */}
       <WhatsAppSupportWidget 
-        phoneNumber="254723629102" // Replace with your Kenyan WhatsApp number
+        phoneNumber={process.env.REACT_APP_WHATSAPP_NUMBER || ""}
         companyName="Your Brand Agency"
         supportHours="Mon-Fri 9AM-5PM EAT"
         welcomeMessage="Hi! Let's discuss how we can elevate your brand. How can we help?"
@@ -94,6 +101,7 @@ function App() {
         )}
       </AnimatePresence>
     </Router>
+    </HelmetProvider>
   );
 }
 

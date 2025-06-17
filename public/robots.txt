@@ -1,3 +1,10 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+
+# Sitemap
+Sitemap: https://abovethelinemarketing.com/sitemap.xml
+
+# Disallow admin or sensitive areas (if any)
+Disallow: /admin/
+Disallow: /.env
