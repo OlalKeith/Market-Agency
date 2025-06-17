@@ -10,6 +10,7 @@ import About from "./pages/About.tsx";
 import Contact from "./pages/Contact.tsx";
 import TermsOfService from "./pages/TermsOfService.tsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.tsx";
+import WhatsAppSupportWidget from "./components/WhatsAppSupportWidget.tsx"; // Add this import
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -81,6 +82,14 @@ function App() {
               <AnimatedRoutes />
             </main>
             <Footer />
+            
+           {/* WhatsApp Support Widget - Add this */}
+      <WhatsAppSupportWidget 
+        phoneNumber="254723629102" // Replace with your Kenyan WhatsApp number
+        companyName="Your Brand Agency"
+        supportHours="Mon-Fri 9AM-5PM EAT"
+        welcomeMessage="Hi! Let's discuss how we can elevate your brand. How can we help?"
+      />
           </div>
         )}
       </AnimatePresence>

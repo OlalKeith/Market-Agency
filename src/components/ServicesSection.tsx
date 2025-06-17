@@ -18,11 +18,13 @@ const services: Service[] = [
   {
     title: "Digital Marketing Mastery",
     icon: "📈",
-    description: "Boost your brand with expert SEO, social media, and ad strategies.",
+    description:
+      "Boost your brand with expert SEO, social media, and ad strategies.",
     calendlyUrl: "https://calendly.com/abovethelinemarketing-info/30min",
     details: {
       price: "From $300/month",
-      solve: "SEO struggles, low social media engagement, ineffective ads, email marketing challenges, and lack of authentic brand content.",
+      solve:
+        "SEO struggles, low social media engagement, ineffective ads, email marketing challenges, and lack of authentic brand content.",
       includes: [
         "SEO Optimization: On-page & technical SEO to boost search rankings.",
         "Social Media Strategy & Content Creation: Tailored content for platforms like Facebook, Instagram, and TikTok (other platforms available at an added cost).",
@@ -31,13 +33,15 @@ const services: Service[] = [
         "Email Marketing Campaigns & Automation: Personalized email sequences to nurture leads and drive conversions.",
         "Monthly Performance Reports: Clear, actionable insights to refine your marketing strategy.",
       ],
-      bestFor: "Businesses looking to grow brand awareness, build community trust, and increase conversions.",
+      bestFor:
+        "Businesses looking to grow brand awareness, build community trust, and increase conversions.",
     },
   },
   {
     title: "Smart Tech Solutions",
     icon: "🤖",
-    description: "Seamless tech solutions for website, automation, and AI integration.",
+    description:
+      "Seamless tech solutions for website, automation, and AI integration.",
     calendlyUrl: "https://calendly.com/abovethelinemarketing-info/30min",
     details: {
       price: "From $500/project",
@@ -54,7 +58,8 @@ const services: Service[] = [
   {
     title: "E-Commerce Success Kit",
     icon: "🛒",
-    description: "Optimize your online store for higher conversions and smoother logistics.",
+    description:
+      "Optimize your online store for higher conversions and smoother logistics.",
     calendlyUrl: "https://calendly.com/abovethelinemarketing-info/30min",
     details: {
       price: "From $400/month",
@@ -70,13 +75,33 @@ const services: Service[] = [
     },
   },
   {
+    title: "Data & Analytics Clarity",
+    icon: "📊",
+    description:
+      "Unlock the power of data to drive smarter business decisions.",
+    calendlyUrl: "https://calendly.com/abovethelinemarketing-info/30min",
+    details: {
+      price: "From $350/month",
+      solve:
+        "Unclear business metrics, customer insights, and performance tracking.",
+      includes: [
+        "Google Analytics setup & insights",
+        "Custom dashboard reporting",
+        "Customer behavior analysis",
+        "Data-driven marketing recommendations",
+      ],
+      bestFor: "Businesses looking to make smarter decisions with data.",
+    },
+  },
+  {
     title: "Virtual Assistance",
     icon: "🖥️",
     description: "Delegate tasks and focus on what matters most.",
     calendlyUrl: "https://calendly.com/abovethelinemarketing-info/30min",
     details: {
       price: "From $250/month",
-      solve: "Time-consuming admin tasks, scheduling headaches, business process inefficiencies.",
+      solve:
+        "Time-consuming admin tasks, scheduling headaches, business process inefficiencies.",
       includes: [
         "Inbox & calendar management",
         "Data entry & research",
@@ -85,6 +110,45 @@ const services: Service[] = [
         "E-commerce order processing",
       ],
       bestFor: "Entrepreneurs & busy professionals needing extra hands.",
+    },
+  },
+  {
+    title: "Product Prototypes & Concept Development",
+    icon: "🔧",
+    description: "Turn ideas into tangible prototypes before mass production.",
+    calendlyUrl: "https://calendly.com/abovethelinemarketing-info/30min",
+    details: {
+      price: "From $800/project",
+      solve: "Turning ideas into tangible prototypes before mass production.",
+      includes: [
+        "3D modeling & rendering",
+        "Product design consultation",
+        "Prototype sourcing & development",
+        "Material & cost analysis",
+        "Manufacturing recommendations",
+      ],
+
+      bestFor: "Startups & businesses developing new products.",
+    },
+  },
+  {
+    title: "International Shipping & Customs Advisory",
+    icon: "🚢",
+    description:
+      "Expert guidance on international shipping, compliance, and logistics.",
+    calendlyUrl: "https://calendly.com/abovethelinemarketing-info/30min",
+    details: {
+      price: "From $100/session",
+      solve:
+        "Compliance challenges, cost inefficiencies, tariff complexities, documentation struggles, shipping and clearance delays, and strategic gaps in international shipping.",
+      includes: [
+        "Simplified customs compliance – Guidance on documentation & import/export regulations.",
+        "Cost-saving strategies – Advice on duty fees, tariffs, and optimal shipping methods.",
+        "Courier selection & logistics optimization – Helping you choose the best carrier for your shipments.",
+        "Educational resources – Digital guides & webinars like ‘How to Import to Kenya’ or ‘How to Ship Internationally.’",
+      ],
+      bestFor:
+        "Importers, exporters, e-commerce businesses, and entrepreneurs expanding globally.",
     },
   },
 ];
@@ -112,20 +176,20 @@ const ServicesSection = () => {
   useEffect(() => {
     const handleCalendlyEvent = (e: MessageEvent) => {
       if (e.origin !== "https://calendly.com") return;
-      
-      if (e.data.event && e.data.event.indexOf('calendly') === 0) {
-        console.log('Calendly event:', e.data.event);
-        
+
+      if (e.data.event && e.data.event.indexOf("calendly") === 0) {
+        console.log("Calendly event:", e.data.event);
+
         // Handle different Calendly events
-        if (e.data.event === 'calendly.event_scheduled') {
-          console.log('Event scheduled:', e.data.payload);
+        if (e.data.event === "calendly.event_scheduled") {
+          console.log("Event scheduled:", e.data.payload);
           setBookingConfirmed(true);
         }
       }
     };
 
-    window.addEventListener('message', handleCalendlyEvent);
-    return () => window.removeEventListener('message', handleCalendlyEvent);
+    window.addEventListener("message", handleCalendlyEvent);
+    return () => window.removeEventListener("message", handleCalendlyEvent);
   }, []);
 
   // Check availability function (can be kept for other uses)
@@ -225,40 +289,46 @@ const ServicesSection = () => {
             {/* Header */}
             <div className="p-4 border-b border-gray-200 flex items-center justify-between">
               <div>
-                <h2 className="text-xl md:text-2xl font-bold">Book Your Consultation</h2>
+                <h2 className="text-xl md:text-2xl font-bold">
+                  Book Your Consultation
+                </h2>
                 <p className="text-sm md:text-base text-gray-600">
                   {selectedService.title} - {selectedService.details.price}
                 </p>
               </div>
-              <button 
+              <button
                 className="text-gray-500 hover:text-gray-700 text-2xl"
                 onClick={() => setShowBookingModal(false)}
               >
                 ×
               </button>
             </div>
-            
+
             {/* Content */}
             <div className="flex-1 overflow-hidden">
               {!bookingConfirmed ? (
                 <div className="h-full">
                   <InlineWidget
                     url={selectedService?.calendlyUrl}
-                    styles={{ 
-                      height: '600px',
-                      width: '100%'
+                    styles={{
+                      height: "600px",
+                      width: "100%",
                     }}
                   />
                 </div>
               ) : (
                 <div className="p-8 text-center">
                   <div className="text-6xl mb-4">🎉</div>
-                  <h3 className="text-2xl font-bold mb-4 text-green-600">Booking Confirmed!</h3>
+                  <h3 className="text-2xl font-bold mb-4 text-green-600">
+                    Booking Confirmed!
+                  </h3>
                   <p className="text-gray-600 mb-4">
-                    Thank you for booking <strong>{selectedService?.title}</strong>
+                    Thank you for booking{" "}
+                    <strong>{selectedService?.title}</strong>
                   </p>
                   <p className="text-sm text-gray-500 mb-6">
-                    You'll receive a confirmation email with all the details shortly.
+                    You'll receive a confirmation email with all the details
+                    shortly.
                   </p>
                   <button
                     className="bg-purple-500 text-white py-2 px-6 rounded hover:bg-purple-600"

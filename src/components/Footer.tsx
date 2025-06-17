@@ -91,7 +91,7 @@ const Footer = () => {
                   href="/privacy-policy"
                   onClick={(e) => handleTermsClick('privacy', e)}
                   className="hover:underline text-left block"
-                  title="Click to view in modal, Ctrl+Click for new page"
+                  title="Ctrl+Click for new page"
                 >
                   Privacy Policy
                 </a>
