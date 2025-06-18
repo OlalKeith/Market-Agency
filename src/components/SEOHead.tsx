@@ -1,6 +1,5 @@
 // src/components/SEOHead.tsx
-import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import React, { useEffect } from 'react';
 
 interface SEOHeadProps {
   title: string;
@@ -17,55 +16,97 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   ogImage = '/default-og-image.jpg',
   canonicalUrl
 }) => {
-  const siteUrl = 'https://abovethelinemarketing.com/';
-  const fullTitle = `${title} | Your Brand Agency`;
+  const siteUrl = 'https://abovethelinemarketing.com';
+  const fullTitle = `${title} | Above The Line Marketing`;
 
-  return (
-    <Helmet>
-      {/* Basic Meta Tags */}
-      <title>{fullTitle}</title>
-      <meta name="description" content={description} />
-      {keywords && <meta name="keywords" content={keywords} />}
+  useEffect(() => {
+    // Set document title
+    document.title = fullTitle;
+
+    // Helper function to set or update meta tags
+    const setMetaTag = (property: string, content: string, isProperty = false) => {
+      const attribute = isProperty ? 'property' : 'name';
+      let meta = document.querySelector(`meta[${attribute}="${property}"]`) as HTMLMetaElement;
       
-      {/* Canonical URL */}
-      {canonicalUrl && <link rel="canonical" href={`${siteUrl}${canonicalUrl}`} />}
+      if (!meta) {
+        meta = document.createElement('meta');
+        meta.setAttribute(attribute, property);
+        document.head.appendChild(meta);
+      }
       
-      {/* Open Graph Tags */}
-      <meta property="og:title" content={fullTitle} />
-      <meta property="og:description" content={description} />
-      <meta property="og:image" content={`${siteUrl}${ogImage}`} />
-      <meta property="og:url" content={`${siteUrl}${canonicalUrl || ''}`} />
-      <meta property="og:type" content="website" />
-      <meta property="og:site_name" content="Your Brand Agency" />
+      meta.setAttribute('content', content);
+    };
+
+    // Set or update link tags
+    const setLinkTag = (rel: string, href: string) => {
+      let link = document.querySelector(`link[rel="${rel}"]`) as HTMLLinkElement;
       
-      {/* Twitter Card Tags */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={fullTitle} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+      if (!link) {
+        link = document.createElement('link');
+        link.setAttribute('rel', rel);
+        document.head.appendChild(link);
+      }
       
-      {/* Additional SEO Tags */}
-      <meta name="robots" content="index, follow" />
-      <meta name="author" content="Your Brand Agency" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      link.setAttribute('href', href);
+    };
+
+    // Set or update script tags
+    const setStructuredData = (data: object) => {
+      let script = document.querySelector('script[type="application/ld+json"]') as HTMLScriptElement;
       
-      {/* Structured Data */}
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "Your Brand Agency",
-          "url": siteUrl,
-          "description": description,
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+254723629102",
-            "contactType": "Customer Service"
-          }
-        })}
-      </script>
-    </Helmet>
-  );
+      if (!script) {
+        script = document.createElement('script');
+        script.setAttribute('type', 'application/ld+json');
+        document.head.appendChild(script);
+      }
+      
+      script.textContent = JSON.stringify(data);
+    };
+
+    // Basic meta tags
+    setMetaTag('description', description);
+    if (keywords) setMetaTag('keywords', keywords);
+    setMetaTag('robots', 'index, follow');
+    setMetaTag('author', 'Above The Line Marketing');
+    setMetaTag('viewport', 'width=device-width, initial-scale=1.0');
+
+    // Open Graph tags
+    setMetaTag('og:title', fullTitle, true);
+    setMetaTag('og:description', description, true);
+    setMetaTag('og:image', `${siteUrl}${ogImage}`, true);
+    setMetaTag('og:url', `${siteUrl}${canonicalUrl || ''}`, true);
+    setMetaTag('og:type', 'website', true);
+    setMetaTag('og:site_name', 'Above The Line Marketing', true);
+
+    // Twitter Card tags
+    setMetaTag('twitter:card', 'summary_large_image');
+    setMetaTag('twitter:title', fullTitle);
+    setMetaTag('twitter:description', description);
+    setMetaTag('twitter:image', `${siteUrl}${ogImage}`);
+
+    // Canonical URL
+    if (canonicalUrl) {
+      setLinkTag('canonical', `${siteUrl}${canonicalUrl}`);
+    }
+
+    // Structured Data
+    setStructuredData({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Above The Line Marketing",
+      "url": siteUrl,
+      "description": description,
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+254723629102",
+        "contactType": "Customer Service"
+      }
+    });
+
+  }, [title, description, keywords, ogImage, canonicalUrl, fullTitle, siteUrl]);
+
+  // This component doesn't render anything visible
+  return null;
 };
 
 export default SEOHead;

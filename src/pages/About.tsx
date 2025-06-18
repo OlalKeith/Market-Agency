@@ -33,7 +33,7 @@ const About = () => {
   return (
   <>
       <SEOHead
-        title="About Us - Above The Line Marketing | Leading Brand Agency in Nairobi"
+        title="About Us - Above The Line Marketing | Leading Brand Agency in Nairobi, Kenya"
         description="Discover Above The Line Marketing's story, our expert team, and innovative approach to brand development. We help Kenyan businesses create powerful brand identities that drive growth and success."
         keywords="above the line marketing, about us, brand agency team nairobi, marketing consultants kenya, brand strategy experts, creative agency story"
         canonicalUrl="/about"

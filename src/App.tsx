@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { HelmetProvider } from 'react-helmet-async';
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
@@ -69,7 +68,6 @@ function App() {
   }, []);
 
   return (
-     <HelmetProvider>
     <Router>
       <AnimatePresence mode="wait">
         {initialLoading ? (
@@ -93,7 +91,7 @@ function App() {
            {/* WhatsApp Support Widget - Add this */}
       <WhatsAppSupportWidget 
         phoneNumber={process.env.REACT_APP_WHATSAPP_NUMBER || ""}
-        companyName="Your Brand Agency"
+        companyName="Above The Line Marketing"
         supportHours="Mon-Fri 9AM-5PM EAT"
         welcomeMessage="Hi! Let's discuss how we can elevate your brand. How can we help?"
       />
@@ -101,7 +99,6 @@ function App() {
         )}
       </AnimatePresence>
     </Router>
-    </HelmetProvider>
   );
 }
 
