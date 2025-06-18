@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface WhatsAppSupportProps {
   phoneNumber: string; // Format: country code + number (e.g., "254712345678")
@@ -16,6 +16,7 @@ const WhatsAppSupportWidget: React.FC<WhatsAppSupportProps> = ({
   const [isOpen, setIsOpen] = useState(false);
   const [selectedMessage, setSelectedMessage] = useState("");
   const [customMessage, setCustomMessage] = useState("");
+  const [showNotification, setShowNotification] = useState(false);
 
   // Predefined messages for your branding/marketing business
   const predefinedMessages = [
@@ -25,6 +26,18 @@ const WhatsAppSupportWidget: React.FC<WhatsAppSupportProps> = ({
     "I need creative design services",
     "and more...",
   ];
+
+  // Time-based notification logic
+  useEffect(() => {
+    // Show notification after user has been on page for 30 seconds
+    const timer = setTimeout(() => {
+      if (!isOpen) {
+        setShowNotification(true);
+      }
+    }, 30000); // 30 seconds
+
+    return () => clearTimeout(timer);
+  }, [isOpen]);
 
   const handleWhatsAppRedirect = (message: string) => {
     const finalMessage = message || customMessage || "Hi! I'm interested in your services.";
@@ -45,6 +58,14 @@ const WhatsAppSupportWidget: React.FC<WhatsAppSupportProps> = ({
       setSelectedMessage("custom");
     } else {
       handleWhatsAppRedirect(message);
+    }
+  };
+
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+    // Hide notification when widget is opened
+    if (showNotification) {
+      setShowNotification(false);
     }
   };
 
@@ -167,7 +188,7 @@ const WhatsAppSupportWidget: React.FC<WhatsAppSupportProps> = ({
 
       {/* Toggle Button */}
       <button 
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={handleToggle}
         className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white rounded-full p-4 shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center group"
         aria-label="Open WhatsApp Support"
       >
@@ -187,8 +208,8 @@ const WhatsAppSupportWidget: React.FC<WhatsAppSupportProps> = ({
         )}
       </button>
       
-      {/* Notification badge */}
-      {!isOpen && (
+      {/* Time-based Notification Badge */}
+      {!isOpen && showNotification && (
         <div className="absolute -top-2 -left-2 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center animate-bounce">
           !
         </div>
